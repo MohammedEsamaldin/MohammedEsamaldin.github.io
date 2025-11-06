@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Mohammed - AI Research Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #00d4ff;
+            --accent-dim: rgba(0, 212, 255, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Section */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 28px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* About */
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        .highlight {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Research & Publications */
+        .publication {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .publication:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .pub-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .pub-meta {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .pub-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .pub-links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .pub-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.4rem 1rem;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+
+        .pub-link:hover {
+            background: var(--accent-dim);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .project-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag {
+            background: var(--accent-dim);
+            color: var(--accent);
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent);
+        }
+
+        /* Blog */
+        .blog-posts {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .blog-post {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .blog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .blog-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .blog-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .blog-read-more {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .blog-read-more:hover {
+            gap: 1rem;
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .exp-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .exp-company {
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        .exp-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .exp-achievements {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .exp-achievements li {
+            color: var(--text-secondary);
+            margin-bottom: 0.7rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .exp-achievements li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--accent-dim);
+            color: var(--text-primary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        /* Awards */
+        .awards-list {
+            list-style: none;
+        }
+
+        .award-item {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--accent);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Education */
+        .education-item {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .edu-degree {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .edu-school {
+            color: var(--accent);
+            font-size: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .edu-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .edu-details {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .edu-details li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-primary);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 1rem 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .exp-header, .edu-header, .blog-header {
+                flex-direction: column;
+            }
+
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">MM</div>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div>
+                    <h1>Mohammed Mohammed</h1>
+                    <p class="tagline">AI Research Engineer • MSc AI Candidate @ QMUL</p>
+                </div>
+                <div class="contact-links">
+                    <a href="mailto:mohammedesam.mem@gmail.com">✉ Email</a>
+                    <a href="tel:+447931941876">📞 +44 7931 941876</a>
+                    <a href="https://github.com/yourusername" target="_blank">💻 GitHub</a>
+                    <a href="https://scholar.google.com/yourusername" target="_blank">📚 Scholar</a>
+                </div>
+            </div>
+        </header>
+
+        <section id="about">
+            <h2 class="section-title">About</h2>
+            <p class="about-text">
+                I'm a <span class="highlight">Research Engineer</span> specializing in machine learning and intelligent agent systems. Currently pursuing an MSc in Artificial Intelligence at Queen Mary University of London, I focus on developing novel architectures for <span class="highlight">multimodal reasoning, hallucination mitigation, and self-improving models</span>. My work bridges foundational ML research with applied automation systems, and I'm passionate about making AI systems more reliable and trustworthy. As a Chevening Scholar, I'm exploring opportunities in PhD programs and research-focused roles where I can contribute to advancing the field of artificial intelligence.
+            </p>
+        </section>
+
+        <section id="research">
+            <h2 class="section-title">Research & Publications</h2>
+            
+            <div class="publication">
+                <h3 class="pub-title">ZANOBIA: A Socratic Framework for Bidirectional Detection and Mitigation of Hallucinations in Multimodal LLMs</h3>
+                <p class="pub-meta">Mohammed, M. (2025) • MSc Thesis • Preprint</p>
+                <p class="pub-description">
+                    Developed a novel method for hallucination detection and correction in multimodal models using Socratic self-play, achieving 20% factuality improvement over HALC baseline on MMHal-Bench. The framework introduces bidirectional verification mechanisms that enable models to self-correct through iterative questioning.
+                </p>
+                <div class="pub-links">
+                    <a href="#" class="pub-link">📄 Paper</a>
+                    <a href="#" class="pub-link">💻 Code</a>
+                </div>
+            </div>
+
+            <div class="publication">
+                <h3 class="pub-title">Defensive AI Governance for Fragile States: A Sovereignty-First Framework for Sudan</h3>
+                <p class="pub-meta">Mohammed, M. (2025)</p>
+                <p class="pub-description">
+                    Proposed a sovereignty-first framework for responsible AI deployment in fragile contexts, addressing unique challenges in AI governance for developing nations. The framework emphasizes local capacity building, data sovereignty, and context-appropriate regulation.
+                </p>
+                <div class="pub-links">
+                    <a href="#" class="pub-link">📄 Paper</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">🤖</div>
+                    <h3 class="project-title">Multi-Agent Planning System</h3>
+                    <p class="project-description">
+                        Autonomous task planning and reasoning system using LLaMA 3.1 and GPT-4, enabling complex multi-step problem solving through agent collaboration.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">LLaMA 3.1</span>
+                        <span class="project-tag">GPT-4</span>
+                        <span class="project-tag">LangChain</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">GitHub →</a>
+                        <a href="#" class="project-link">Demo →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">🔍</div>
+                    <h3 class="project-title">Hallucination Detection Pipeline</h3>
+                    <p class="project-description">
+                        Production-ready pipeline for detecting and mitigating hallucinations in large language models, with focus on factual consistency.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">PyTorch</span>
+                        <span class="project-tag">Transformers</span>
+                        <span class="project-tag">NLP</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">📊</div>
+                    <h3 class="project-title">Employee Turnover Prediction</h3>
+                    <p class="project-description">
+                        ML system for predicting employee turnover with 15% improved accuracy, processing 250K+ HR records with advanced feature engineering.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">Scikit-learn</span>
+                        <span class="project-tag">Pandas</span>
+                        <span class="project-tag">XGBoost</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">⚡</div>
+                    <h3 class="project-title">Automated Data Cleaning Pipeline</h3>
+                    <p class="project-description">
+                        GPT-4 powered data cleaning system reducing processing latency by 90%, deployed on scalable infrastructure with Airflow orchestration.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">GPT-4</span>
+                        <span class="project-tag">Airflow</span>
+                        <span class="project-tag">PostgreSQL</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">GitHub →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog">
+            <h2 class="section-title">Blog</h2>
+            <div class="blog-posts">
+                <article class="blog-post">
+                    <div class="blog-header">
+                        <div>
+                            <h3 class="blog-title">Understanding Hallucinations in Multimodal LLMs</h3>
+                            <p class="blog-date">November 2024</p>
+                        </div>
+                    </div>
+                    <p class="blog-excerpt">
+                        Exploring the challenges of factual consistency in vision-language models and introducing the ZANOBIA framework for detection and mitigation. This post discusses the theoretical foundations and practical implications of hallucination in AI systems.
+                    </p>
+                    <a href="#" class="blog-read-more">Read more →</a>
+                </article>
+
+                <article class="blog-post">
+                    <div class="blog-header">
+                        <div>
+                            <h3 class="blog-title">Building Multi-Agent Systems: Lessons from Production</h3>
+                            <p class="blog-date">October 2024</p>
+                        </div>
+                    </div>
+                    <p class="blog-excerpt">
+                        Practical insights from designing and deploying autonomous multi-agent architectures at scale. Key takeaways on prompting strategies, model orchestration, and handling edge cases in real-world applications.
+                    </p>
+                    <a href="#" class="blog-read-more">Read more →</a>
+                </article>
+
+                <article class="blog-post">
+                    <div class="blog-header">
+                        <div>
+                            <h3 class="blog-title">AI Governance in Fragile States: A New Framework</h3>
+                            <p class="blog-date">September 2024</p>
+                        </div>
+                    </div>
+                    <p class="blog-excerpt">
+                        Why standard AI governance frameworks fail in fragile contexts and how a sovereignty-first approach can enable responsible AI deployment in developing nations. Drawing from case studies in Sudan and similar contexts.
+                    </p>
+                    <a href="#" class="blog-read-more">Read more →</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-title">AI Research Engineer</div>
+                        <div class="exp-company">Q parts</div>
+                    </div>
+                    <div class="exp-date">July 2023 - August 2024</div>
+                </div>
+                <ul class="exp-achievements">
+                    <li>Designed and implemented multi-agent architectures (LLaMA 3.1 + GPT-4) for autonomous task planning and reasoning, contributing to research on agentic automation</li>
+                    <li>Conducted rigorous experiments on prompting strategies, hallucination mitigation, and multi-model reasoning pipelines</li>
+                    <li>Automated data cleaning workflows with GPT-4 + LangChain, achieving 90% latency reduction in production</li>
+                    <li>Deployed research prototypes to production using scalable distributed pipelines (Airflow, dbt, PostgreSQL)</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-title">Data Scientist</div>
+                        <div class="exp-company">Morouj</div>
+                    </div>
+                    <div class="exp-date">December 2022 - February 2023</div>
+                </div>
+                <ul class="exp-achievements">
+                    <li>Developed ML models to predict employee turnover with 15% better accuracy than baseline</li>
+                    <li>Performed extensive EDA and feature engineering on 250K+ HR records</li>
+                    <li>Built a comprehensive experimentation framework to test sampling, cross-validation, and hyperparameter tuning strategies</li>
+                    <li>Collaborated with cross-functional teams to develop explainable models and scalable ML pipelines</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-title">ML Engineer</div>
+                        <div class="exp-company">TRX</div>
+                    </div>
+                    <div class="exp-date">November 2020 - July 2021</div>
+                </div>
+                <ul class="exp-achievements">
+                    <li>Built ML-powered automation tools in TensorFlow, reducing 30+ hours of manual work monthly</li>
+                    <li>Designed and deployed an ML pipeline for processing behavioral data from 110K+ users</li>
+                    <li>Created Python-based ML tools enabling non-technical teams to run model inferences independently</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="education-item">
+                <div class="edu-header">
+                    <div>
+                        <div class="edu-degree">MSc Artificial Intelligence</div>
+                        <div class="edu-school">Queen Mary University of London (QMUL)</div>
+                    </div>
+                    <div class="edu-date">September 2024 - September 2025</div>
+                </div>
+                <div class="edu-details">
+                    <ul>
+                        <li><strong>Thesis:</strong> "ZANOBIA: A Socratic Framework for Bidirectional Detection and Mitigation of Hallucinations in Multimodal LLMs"</li>
+                        <li><strong>Research areas:</strong> Foundation Models, Multimodal Reasoning, Agentic Automation, Hallucination Mitigation</li>
+                        <li><strong>Award:</strong> Chevening Scholarship (global top 2%)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="education-item">
+                <div class="edu-header">
+                    <div>
+                        <div class="edu-degree">BSc Electrical Engineering</div>
+                        <div class="edu-school">Sudan University of Science and Technology</div>
+                    </div>
+                    <div class="edu-date">October 2014 - December 2020</div>
+                </div>
+                <div class="edu-details">
+                    <ul>
+                        <li><strong>Relevant modules:</strong> Signal Processing, Artificial Neural Networks, Calculus, Control Systems</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>ML/AI</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">VLM/LLM</span>
+                        <span class="skill-tag">Foundation Models</span>
+                        <span class="skill-tag">Computer Vision</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Research Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Hugging Face</span>
+                        <span class="skill-tag">Weights & Biases</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Matplotlib</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Engineering</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">Distributed Training</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="awards">
+            <h2 class="section-title">Awards & Recognition</h2>
+            <ul class="awards-list">
+                <li class="award-item">🏆 Chevening Scholarship (global top 2%) for leading impactful project in AI</li>
+                <li class="award-item">🥇 Digital Product of the Year, Automechanika Dubai 2024</li>
+                <li class="award-item">📝 Author of 2 AI research papers (Model hallucination, AI governance)</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>© 2025 Mohammed Mohammed. Built with passion for AI research.</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleNav() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
