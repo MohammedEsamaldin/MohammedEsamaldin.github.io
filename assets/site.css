@@ -8,13 +8,6 @@
   --nile:  #17706B;
   --silt:  #D9E4E1;
 
-  /* 5-step activation ramp: silt -> nile -> ink */
-  --ramp-0: #D9E4E1;
-  --ramp-1: #A7C7C3;
-  --ramp-2: #589E98;
-  --ramp-3: #17706B;
-  --ramp-4: #18494E;
-
   --sans: "Readex Pro", "Segoe UI", system-ui, sans-serif;
   --serif: "Literata", Georgia, "Times New Roman", serif;
 
@@ -30,12 +23,6 @@
     --muted: #9AA3B2;
     --nile:  #5FB3AC;
     --silt:  #2A3445;
-
-    --ramp-0: #2A3445;
-    --ramp-1: #35564F;
-    --ramp-2: #42857C;
-    --ramp-3: #5FB3AC;
-    --ramp-4: #9FD6D1;
   }
 }
 
@@ -122,11 +109,7 @@ time, .meta, .now-date { font-variant-numeric: tabular-nums; }
    Hero
    --------------------------------------------------------------- */
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
-  gap: var(--gap);
-  align-items: start;
-  padding: 72px 0 56px;
+  padding: 84px 0 64px;
 }
 
 .hero h1 {
@@ -149,7 +132,8 @@ time, .meta, .now-date { font-variant-numeric: tabular-nums; }
 .statement {
   font-size: 22px;
   line-height: 1.45;
-  margin: 0 0 20px;
+  max-width: 34ch;
+  margin: 0 0 24px;
 }
 
 .credentials {
@@ -168,41 +152,6 @@ time, .meta, .now-date { font-variant-numeric: tabular-nums; }
   padding: 0;
   font-family: var(--sans);
   font-size: 15px;
-}
-
-/* ---------------------------------------------------------------
-   Activation grid
-   --------------------------------------------------------------- */
-.figure { margin: 0; }
-.figure svg { width: 100%; max-width: 360px; height: auto; display: block; }
-.figure figcaption {
-  font-family: var(--sans);
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--muted);
-  margin-top: 14px;
-  max-width: 360px;
-}
-
-.grid-label { font-family: var(--sans); font-size: 13px; fill: var(--muted); }
-
-.cell { fill: var(--ramp-0); }
-.cell[data-step="1"] { fill: var(--ramp-1); }
-.cell[data-step="2"] { fill: var(--ramp-2); }
-.cell[data-step="3"] { fill: var(--ramp-3); }
-.cell[data-step="4"] { fill: var(--ramp-4); }
-
-/* The one animation on the page. Runs only when JS is present, so the
-   no-JS page renders the final state. Keyframes name only `from`, so
-   fill-mode:both holds silt through the delay, then eases to the cell's
-   own colour and stays there. */
-.js .cell {
-  animation: cell-reveal 350ms ease var(--d, 0ms) both;
-}
-@keyframes cell-reveal { from { fill: var(--ramp-0); } }
-
-@media (prefers-reduced-motion: reduce) {
-  .js .cell { animation: none; }
 }
 
 /* ---------------------------------------------------------------
@@ -351,14 +300,11 @@ time, .meta, .now-date { font-variant-numeric: tabular-nums; }
   .nav-inner { flex-wrap: wrap; align-items: flex-start; padding-top: 8px; padding-bottom: 8px; }
 
   .hero {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 36px;
-    padding: 44px 0 36px;
+    padding: 48px 0 40px;
   }
   .hero h1 { font-size: 40px; }
   .name-ar { font-size: 22px; margin-bottom: 20px; }
   .statement { font-size: 20px; max-width: none; }
-  .figure svg, .figure figcaption { max-width: none; }
 
   .section {
     grid-template-columns: minmax(0, 1fr);
